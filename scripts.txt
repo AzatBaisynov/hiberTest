@@ -1,0 +1,23 @@
+create table reg_user(
+id serial primary key,
+name varchar(100) not null,
+age integer not null
+);
+
+create table post(
+id serial primary key,
+post_name varchar(100),
+reg_user_id integer references reg_user(id) unique not null
+);
+
+create table likes(
+id serial primary key,
+post_id integer references post(id) not null,
+liker_id integer references reg_user(id) not null
+);
+
+create table follower(
+id serial primary key,
+main_id integer references reg_user(id) not null,
+follower_id integer references reg_user(id) not null
+);
